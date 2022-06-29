@@ -2,15 +2,12 @@
 const express = require("express"); // express 임포트
 const app = express(); // app생성
 const PORT = process.env.PORT || 5000;
-
+const MONGOURL = process.env.MONGOURL;
 const cors = require("cors");
 app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.json());
-
-const port = 5000;
 
 const kakaoRouter = require("./router/kakao");
 
@@ -22,15 +19,12 @@ var randomstring = require("randomstring");
 app.listen(PORT);
 
 mongoose
-  .connect(
-    "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
-    {
-      // useNewUrlPaser: true
-      // useUnifiedTofology: true,
-      // useCreateIndex: true,
-      // useFindAndModify: false,
-    }
-  )
+  .connect(MONGOURL, {
+    // useNewUrlPaser: true
+    // useUnifiedTofology: true,
+    // useCreateIndex: true,
+    // useFindAndModify: false,
+  })
   .then(() => console.log("MongoDB conected"))
   .catch((err) => {
     console.log(err);
