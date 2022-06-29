@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const kakaoRouter = require("./router/kakao");
-const imgFs = require("./router/imgFs");
+
 // 몽구스 연결
 const mongoose = require("mongoose");
 const User = require("./Entity/userModel");
@@ -34,7 +34,6 @@ mongoose
   });
 
 app.use("/kakao", kakaoRouter);
-app.use("/img", imgFs);
 // 유저 입력
 app.get("/", async function (req, res) {
   // const user = new User({
@@ -59,6 +58,16 @@ app.get("/", async function (req, res) {
   res.send("hello world!!");
 });
 
+app.get("/check", async function (req, res) {
+  User.updateOne({ noticeToken: "lt9HRkV0KHQr" }, { check: false }).then();
+
+  const datas = await User.find({ noticeToken: "lt9HRkV0KHQr" });
+  datas.map((el) => {
+    console.log(el);
+  });
+
+  res.write("<script>alert('확인되었습니다!')</script>");
+});
 // test용 json
 app.get("/json", async function (req, res) {
   const Users = [];
