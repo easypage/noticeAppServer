@@ -9,7 +9,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const port = 5000;
-app.listen(process.env.PORT || 8080);
 
 const kakaoRouter = require("./router/kakao");
 
@@ -41,23 +40,23 @@ app.use("/kakao", kakaoRouter);
 
 // 유저 입력
 app.get("/", async function (req, res) {
-  const user = new User({
-    name: "kim",
-    state: "지각",
-    reason: "프로젝트 서버 배포!",
-    private: false,
-    title: "3",
-    date: "2022-06-25",
-    noticeToken: randomstring.generate(12),
-  });
-  await user
-    .save()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  // const user = new User({
+  //   name: "kim",
+  //   state: "지각",
+  //   reason: "프로젝트 서버 배포!",
+  //   private: false,
+  //   title: "3",
+  //   date: "2022-06-25",
+  //   noticeToken: randomstring.generate(12),
+  // });
+  // await user
+  //   .save()
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
 
   res.send("hello world!!");
 });
