@@ -20,42 +20,42 @@ var randomstring = require("randomstring");
 
 app.listen(PORT);
 
-// mongoose
-//   .connect(
-//     "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
-//     {
-//       // useNewUrlPaser: true
-//       // useUnifiedTofology: true,
-//       // useCreateIndex: true,
-//       // useFindAndModify: false,
-//     }
-//   )
-//   .then(() => console.log("MongoDB conected"))
-//   .catch((err) => {
-//     console.log(err);
-//   });
+mongoose
+  .connect(
+    "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
+    {
+      // useNewUrlPaser: true
+      // useUnifiedTofology: true,
+      // useCreateIndex: true,
+      // useFindAndModify: false,
+    }
+  )
+  .then(() => console.log("MongoDB conected"))
+  .catch((err) => {
+    console.log(err);
+  });
 
-// app.use("/kakao", kakaoRouter);
+app.use("/kakao", kakaoRouter);
 
 // 유저 입력
 app.get("/", async function (req, res) {
-  // const user = new User({
-  //   name: "kim",
-  //   state: "지각",
-  //   reason: "프로젝트 서버 배포!",
-  //   private: false,
-  //   title: "3",
-  //   date: "2022-06-25",
-  //   noticeToken: randomstring.generate(12),
-  // });
-  // await user
-  //   .save()
-  //   .then((result) => {
-  //     console.log(result);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
+  const user = new User({
+    name: "kim",
+    state: "지각",
+    reason: "프로젝트 서버 배포!",
+    private: false,
+    title: "3",
+    date: "2022-06-25",
+    noticeToken: randomstring.generate(12),
+  });
+  await user
+    .save()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
   res.send("hello world!!");
 });
