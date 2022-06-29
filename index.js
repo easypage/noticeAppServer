@@ -66,10 +66,9 @@ app.get("/check", async function (req, res) {
     console.log(el);
   });
 
-  res.write(
-    "<script>location.href = 'kakaotalk://inappbrowser/close';”</script>"
-  );
-  res.end();
+  res.write("<script>alert('success')</script>");
+
+  res.redirect("kakaotalk://inappbrowser/close");
 });
 // test용 json
 app.get("/json", async function (req, res) {
