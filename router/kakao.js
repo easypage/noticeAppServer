@@ -4,8 +4,6 @@ const axios = require("axios");
 
 // 카카오 토큰 > 토큰 받기 리프레쉬 토큰으로 교체
 const ACCESS_TOKEN = "MvRt2c9KY-FMpt-RyEfd5rielsv6DHCnaft7UlL5Cj11GwAAAYGt7N06";
-const REST_API_KEY = "56abbacaf03c462f70b076d8e5ef1438";
-const REDIRECT_URI = "http://localhost:5000/token";
 
 const imgLateList = ["https://attendancechecknotice.herokuapp.com/late.png"];
 

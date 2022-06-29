@@ -57,7 +57,7 @@ app.get("/", async function (req, res) {
 
   res.send("hello world!!");
 });
-
+// 승인하기
 app.get("/check", async function (req, res) {
   User.updateOne({ noticeToken: "lt9HRkV0KHQr" }, { check: true }).then();
 
@@ -67,7 +67,9 @@ app.get("/check", async function (req, res) {
   });
 
   res.write("<script>alert('success')</script>");
-
+  res.write(
+    "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
+  );
   res.end();
 });
 // test용 json
