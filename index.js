@@ -66,9 +66,8 @@ app.get("/check", async function (req, res) {
     console.log(el);
   });
 
-  res.write("<script>alert('success')</script>");
   res.write(
-    "<script>location.href = “kakaotalk://inappbrowser/close”</script>"
+    "<script>location.href = 'kakaotalk://inappbrowser/close';”</script>"
   );
   res.end();
 });
