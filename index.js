@@ -68,7 +68,7 @@ app.get("/check", async function (req, res) {
 
   res.write("<script>alert('success')</script>");
 
-  res.redirect("kakaotalk://inappbrowser/close");
+  res.end();
 });
 // test용 json
 app.get("/json", async function (req, res) {
