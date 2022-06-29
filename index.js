@@ -21,22 +21,22 @@ app.listen(port, () => {
   console.log(`${port}포트입니다.`);
 });
 
-mongoose
-  .connect(
-    "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
-    {
-      // useNewUrlPaser: true
-      // useUnifiedTofology: true,
-      // useCreateIndex: true,
-      // useFindAndModify: false,
-    }
-  )
-  .then(() => console.log("MongoDB conected"))
-  .catch((err) => {
-    console.log(err);
-  });
+// mongoose
+//   .connect(
+//     "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
+//     {
+//       // useNewUrlPaser: true
+//       // useUnifiedTofology: true,
+//       // useCreateIndex: true,
+//       // useFindAndModify: false,
+//     }
+//   )
+//   .then(() => console.log("MongoDB conected"))
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
-app.use("/kakao", kakaoRouter);
+// app.use("/kakao", kakaoRouter);
 
 // 유저 입력
 app.get("/", async function (req, res) {
