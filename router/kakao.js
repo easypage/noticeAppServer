@@ -13,14 +13,14 @@ function getTemplate(massage) {
   const temp = {
     object_type: "feed",
     content: {
-      title: "지각!",
+      title: "Test!",
       description: massage,
-      image_url: "https://attendancechecknotice.herokuapp.com/late.png",
+      image_url: "https://attendancechecknotice.herokuapp.com/test.png",
       image_width: 640,
       image_height: 640,
       link: {
-        web_url: "http://www.daum.net",
-        mobile_web_url: "http://m.daum.net",
+        web_url: "https://attendancechecknotice.herokuapp.com/check",
+        mobile_web_url: "https://attendancechecknotice.herokuapp.com/check",
         android_execution_params: "contentId=100",
 
         ios_execution_params: "contentId=100",
@@ -29,12 +29,9 @@ function getTemplate(massage) {
     item_content: {
       items: [
         {
-          item: "사유1",
-          item_op: "점심이 맛없어요",
-        },
-        {
-          item: "사유2",
-          item_op: "피곤해요",
+          item: "이유",
+          item_op:
+            "유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유",
         },
       ],
     },
@@ -43,10 +40,10 @@ function getTemplate(massage) {
     },
     buttons: [
       {
-        title: "웹으로 이동",
+        title: "승인하기",
         link: {
-          web_url: "http://naver.com",
-          mobile_web_url: "http://naver.com",
+          web_url: "https://attendancechecknotice.herokuapp.com/check",
+          mobile_web_url: "https://attendancechecknotice.herokuapp.com/check",
         },
       },
     ],
@@ -80,6 +77,7 @@ router.get("/massage", async function (req, res) {
   } catch (error) {
     console.log("에러발생");
   }
+  res.end();
 });
 
 module.exports = router;

@@ -59,14 +59,16 @@ app.get("/", async function (req, res) {
 });
 
 app.get("/check", async function (req, res) {
-  User.updateOne({ noticeToken: "lt9HRkV0KHQr" }, { check: false }).then();
+  User.updateOne({ noticeToken: "lt9HRkV0KHQr" }, { check: true }).then();
 
   const datas = await User.find({ noticeToken: "lt9HRkV0KHQr" });
   datas.map((el) => {
     console.log(el);
   });
 
-  res.write("<script>alert('확인되었습니다!')</script>");
+  res.write("<script>alert('success')</script>");
+  res.write("<script> window.close()</script>");
+  res.end();
 });
 // test용 json
 app.get("/json", async function (req, res) {
