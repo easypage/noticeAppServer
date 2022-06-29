@@ -1,6 +1,7 @@
 // index.js
 const express = require("express"); // express 임포트
 const app = express(); // app생성
+const PORT = process.env.PORT;
 const cors = require("cors");
 app.use(cors());
 
@@ -17,9 +18,7 @@ const mongoose = require("mongoose");
 const User = require("./Entity/userModel");
 var randomstring = require("randomstring");
 
-app.listen(port, () => {
-  console.log(`${port}포트입니다.`);
-});
+app.listen(PORT);
 
 // mongoose
 //   .connect(
