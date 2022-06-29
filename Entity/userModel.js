@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   title: String,
   date: String,
   noticeToken: String,
+  check: Boolean,
 });
 
 const User = mongoose.model("User", UserSchema);

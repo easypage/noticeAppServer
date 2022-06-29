@@ -2,15 +2,18 @@
 const express = require("express"); // express 임포트
 const app = express(); // app생성
 const PORT = process.env.PORT || 5000;
-const MONGOURL = process.env.MONGOURL;
+const MONGOURL =
+  process.env.MONGOURL ||
+  "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority";
 const cors = require("cors");
 app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.static("public"));
 
 const kakaoRouter = require("./router/kakao");
-
+const imgFs = require("./router/imgFs");
 // 몽구스 연결
 const mongoose = require("mongoose");
 const User = require("./Entity/userModel");
@@ -31,7 +34,7 @@ mongoose
   });
 
 app.use("/kakao", kakaoRouter);
-
+app.use("/img", imgFs);
 // 유저 입력
 app.get("/", async function (req, res) {
   // const user = new User({
@@ -42,6 +45,7 @@ app.get("/", async function (req, res) {
   //   title: "3",
   //   date: "2022-06-25",
   //   noticeToken: randomstring.generate(12),
+  //   check: false,
   // });
   // await user
   //   .save()
