@@ -16,11 +16,14 @@ router.post("/", async function (req, res) {
     return res.status(400).send({ message: "failed: request does not exist" });
   }
 
-  const respons = await calendermongo.createCal(req.body);
-
-  if (!respons) {
-    return res.status(400).send({ message: "failed: create user" });
-  }
+  await calendermongo
+    .createCal(req.body)
+    .catch((err) => {
+      res.status(400).send({ message: "failed: create user" + `${err}` });
+    })
+    .then((result) => {
+      console.log(result);
+    });
 
   await kakaoApi.sendMessage(req.body);
   return res.status(200).send({ message: "successfully" });
@@ -54,6 +57,8 @@ router.get("/check", async function (req, res) {
   res.end();
 });
 
-router.get("/test", async function (req, res) {});
+router.get("/test", async function (req, res) {
+  kakaoApi.sendMessage();
+});
 
 module.exports = router;

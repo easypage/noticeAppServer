@@ -12,13 +12,13 @@ const imgLateList = {
   leaveEarly: ["https://attendancechecknotice.herokuapp.com/leaveEarly1.png"],
 };
 
-function getTemplate(massage) {
+function getTemplate(massage, url) {
   const temp = {
     object_type: "feed",
     content: {
       title: "캘린더 테스트",
       description: massage,
-      image_url: "https://attendancechecknotice.herokuapp.com/test.png",
+      image_url: `${url}`,
       image_width: 640,
       image_height: 640,
       link: {
@@ -59,12 +59,22 @@ function getTemplate(massage) {
 }
 
 async function sendMessage(UserData) {
-  const name = "late";
+  let imglist;
+  switch (UserData.state) {
+    case "결석":
+      imglist = imgLateList.absent;
+      break;
+    case "지각":
+      imglist = imgLateList.late;
+      break;
+    case "조퇴":
+      imglist = imgLateList.leaveEarly;
+      break;
+  }
 
-  const imglist = imgLateList[`${name}`];
   imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
-
-  const template = getTemplate("안녕하세요");
+  console.log(imgUrl);
+  const template = getTemplate("안녕하세요", imgUrl);
 
   try {
     await axios
