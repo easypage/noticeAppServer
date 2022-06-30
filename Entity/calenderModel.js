@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
+const calenderSchema = new mongoose.Schema({
   name: { type: "string", required: true },
   state: String,
   reason: String,
@@ -11,6 +11,6 @@ const UserSchema = new mongoose.Schema({
   check: Boolean,
 });
 
-const User = mongoose.model("User", UserSchema);
+const CalenderModel = mongoose.model("Calender", calenderSchema);
 
-module.exports = User;
+module.exports = CalenderModel;
