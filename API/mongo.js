@@ -43,7 +43,7 @@ async function createCal(body) {
     name: body.name,
     state: body.state,
     reason: body.reason,
-    private: body.private,
+    privateReason: body.privateReason,
     title: body.title,
     date: body.date,
     noticeToken: randomstring.generate(12),
