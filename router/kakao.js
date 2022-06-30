@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 // 카카오 토큰 > 토큰 받기 리프레쉬 토큰으로 교체
-const ACCESS_TOKEN = "MvRt2c9KY-FMpt-RyEfd5rielsv6DHCnaft7UlL5Cj11GwAAAYGt7N06";
+const ACCESS_TOKEN = "F35oMAbAFT7rPFnOP5-UGgF78jOuZsMQJaQ-QJolCilwnwAAAYGymMzG";
 
 const imgLateList = ["https://attendancechecknotice.herokuapp.com/late.png"];
 
@@ -40,8 +40,9 @@ function getTemplate(massage) {
       {
         title: "승인하기",
         link: {
-          web_url: "https://attendancechecknotice.herokuapp.com/check",
-          mobile_web_url: "https://attendancechecknotice.herokuapp.com/check",
+          web_url: `https://attendancechecknotice.herokuapp.com/check?token=psbjuITVOHsh`,
+          mobile_web_url:
+            "https://attendancechecknotice.herokuapp.com/check?token=psbjuITVOHsh",
         },
       },
     ],

@@ -39,3 +39,8 @@ app.get("/json", async function (req, res) {
 
   res.json({ ok: true, Users });
 });
+app.get("/check", async function (req, res) {
+  console.log(req.query.token);
+  res.send("hello");
+  res.end();
+});
