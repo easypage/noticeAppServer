@@ -75,7 +75,7 @@ async function sendMessage(UserData) {
     UserData.reason,
     imgUrl,
     UserData.date,
-    UserData.token
+    UserData.noticeToken
   );
 
   try {
