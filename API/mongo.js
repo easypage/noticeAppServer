@@ -39,6 +39,8 @@ async function check(token) {
   return string;
 }
 async function createCal(body) {
+  console.log(body);
+
   const user = new CalenderModel({
     name: body.name,
     state: body.state,
@@ -49,6 +51,7 @@ async function createCal(body) {
     noticeToken: randomstring.generate(12),
     check: false,
   });
+
   await user
     .save()
     .then((result) => {
