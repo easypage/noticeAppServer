@@ -32,12 +32,7 @@ function getTemplate(name, state, reason, url, date, token) {
     item_content: {
       profile_text: name,
       title_image_text: state,
-      items: [
-        {
-          item: "날짜",
-          item_op: date,
-        },
-      ],
+      title_image_category: date,
     },
     social: {
       like_count: 999,

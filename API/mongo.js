@@ -27,7 +27,7 @@ mongoose
 
 async function check(token) {
   const datas = await CalenderModel.find({ noticeToken: token });
-  let string = "성공하였습니다.";
+  let string = "승인하였습니다.";
   datas.map((el) => {
     console.log(el.check);
     if (el.check === true) {
