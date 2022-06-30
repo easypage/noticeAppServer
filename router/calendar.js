@@ -21,4 +21,8 @@ router.post("/", async function (req, res) {
 });
 router.post("/create", async function (req, res) {});
 
+router.checkout("/check", async function (req, res) {
+  await calendermongo.check(req.query.token);
+  res.send("hello");
+});
 module.exports = router;

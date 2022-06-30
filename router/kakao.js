@@ -17,8 +17,9 @@ function getTemplate(massage) {
       image_width: 640,
       image_height: 640,
       link: {
-        web_url: "https://attendancechecknotice.herokuapp.com/check",
-        mobile_web_url: "https://attendancechecknotice.herokuapp.com/check",
+        web_url: "https://attendancechecknotice.herokuapp.com/calendar/check",
+        mobile_web_url:
+          "https://attendancechecknotice.herokuapp.com/calendar/check",
         android_execution_params: "contentId=100",
 
         ios_execution_params: "contentId=100",
