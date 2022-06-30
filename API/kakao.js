@@ -12,20 +12,18 @@ const imgLateList = {
   leaveEarly: ["https://attendancechecknotice.herokuapp.com/leaveEarly1.png"],
 };
 
-function getTemplate(massage, url) {
+function getTemplate(name, state, url, date, token) {
   const temp = {
     object_type: "feed",
     content: {
-      title: "캘린더 테스트",
-      description: massage,
-      image_url: `${url}`,
+      title: name,
+      description: state,
+      image_url: url,
       image_width: 640,
       image_height: 640,
       link: {
-        web_url:
-          "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
-        mobile_web_url:
-          "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
+        web_url: "https://attendancechecknotice.herokuapp.com/",
+        mobile_web_url: "https://attendancechecknotice.herokuapp.com/",
         android_execution_params: "contentId=100",
 
         ios_execution_params: "contentId=100",
@@ -35,8 +33,11 @@ function getTemplate(massage, url) {
       items: [
         {
           item: "이유",
-          item_op:
-            "유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유유",
+          item_op: reason,
+        },
+        {
+          item: "날짜",
+          item_op: date,
         },
       ],
     },
@@ -47,9 +48,8 @@ function getTemplate(massage, url) {
       {
         title: "승인하기",
         link: {
-          web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh`,
-          mobile_web_url:
-            "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
+          web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token=${token}`,
+          mobile_web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token=${token}`,
         },
       },
     ],
@@ -60,8 +60,7 @@ function getTemplate(massage, url) {
 
 async function sendMessage(UserData) {
   let imglist;
-  console.log("유저데이타 확인");
-  console.log(UserData);
+
   switch (UserData.state) {
     case "결석":
       imglist = imgLateList.absent;
@@ -76,7 +75,14 @@ async function sendMessage(UserData) {
 
   imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
   console.log(imgUrl);
-  const template = getTemplate("안녕하세요", imgUrl);
+
+  const template = getTemplate(
+    UserData.name,
+    UserData.state,
+    imgUrl,
+    UserData.date,
+    UserData.token
+  );
 
   try {
     await axios

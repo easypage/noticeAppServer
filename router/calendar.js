@@ -25,6 +25,7 @@ router.post("/", async function (req, res) {
   }
   console.log("리스폰스 확인");
   console.log(response.user);
+
   await kakaoApi.sendMessage(response.user);
   return res.status(200).send({ message: "successfully" });
 });
