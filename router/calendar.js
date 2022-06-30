@@ -19,7 +19,9 @@ router.post("/", async function (req, res) {
   await calendermongo
     .createCal(req.body)
     .catch((err) => {
-      res.status(400).send({ message: "failed: create user" + `${err}` });
+      return res
+        .status(400)
+        .send({ message: "failed: create user" + `${err}` });
     })
     .then((result) => {
       console.log(result);
