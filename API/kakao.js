@@ -16,8 +16,8 @@ function getTemplate(name, state, reason, url, date, token) {
   const temp = {
     object_type: "feed",
     content: {
-      title: name,
-      description: state,
+      title: "이유",
+      description: reason,
       image_url: url,
       image_width: 640,
       image_height: 640,
@@ -30,11 +30,9 @@ function getTemplate(name, state, reason, url, date, token) {
       },
     },
     item_content: {
+      profile_text: name,
+      title_image_text: state,
       items: [
-        {
-          item: "이유",
-          item_op: reason,
-        },
         {
           item: "날짜",
           item_op: date,
