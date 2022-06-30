@@ -16,18 +16,14 @@ router.post("/", async function (req, res) {
     return res.status(400).send({ message: "failed: request does not exist" });
   }
   console.log(req.body);
-  await calendermongo
-    .createCal(req.body)
-    .catch((err) => {
-      console.log("cal오류 발생");
-      return res.status(400).send({ message: `failed: create user 메세지` });
-    })
-    .then((result) => {
-      console.log("cal성공");
-      console.log(result);
-    });
+  const response = await calendermongo.createCal(req.body);
 
-  await kakaoApi.sendMessage(req.body);
+  if (!response.check) {
+    return res.status(400).send({ message: "create user fail" });
+  }
+
+  console.log(response.user);
+  await kakaoApi.sendMessage();
   return res.status(200).send({ message: "successfully" });
 });
 

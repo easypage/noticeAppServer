@@ -39,6 +39,9 @@ async function check(token) {
   return string;
 }
 async function createCal(body) {
+  console.log(body);
+
+  let res = { check: false, user: {} };
   const user = new CalenderModel({
     name: body.name,
     state: body.state,
@@ -50,14 +53,12 @@ async function createCal(body) {
     check: false,
   });
 
-  await user
-    .save()
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      throw new Error("create user error");
-    });
+  await user.save().then((result) => {
+    res.user = result;
+    res.check = true;
+  });
+
+  return res;
 }
 
 module.exports = { createCal: createCal, check: check };
