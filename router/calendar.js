@@ -23,10 +23,12 @@ router.post("/create", async function (req, res) {});
 
 router.get("/check", async function (req, res) {
   const response = await calendermongo.check(req.query.token);
-  res.write(`<script charset="utf-8">alert("${response}")</script>`);
-  // res.write(
-  //   "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
-  // );
+
+  res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+  res.write(`<script>alert("${response}")</script>`);
+  res.write(
+    "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
+  );
   res.end();
 });
 module.exports = router;

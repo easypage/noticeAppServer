@@ -27,13 +27,16 @@ mongoose
 
 async function check(token) {
   const datas = await CalenderModel.find({ noticeToken: token });
+  let string = "성공하였습니다.";
   datas.map((el) => {
+    console.log(el.check);
     if (el.check === true) {
-      return "이미 처리된 요청입니다.";
+      string = "이미 처리된 요청입니다.";
     }
   });
+
   CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
-  return "성공하였습니다.";
+  return string;
 }
 async function createCal(name, state, reason, private, title, date) {
   const user = new CalenderModel({
