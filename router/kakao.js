@@ -11,15 +11,16 @@ function getTemplate(massage) {
   const temp = {
     object_type: "feed",
     content: {
-      title: "Test!",
+      title: "캘린더 테스트",
       description: massage,
       image_url: "https://attendancechecknotice.herokuapp.com/test.png",
       image_width: 640,
       image_height: 640,
       link: {
-        web_url: "https://attendancechecknotice.herokuapp.com/calendar/check",
+        web_url:
+          "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
         mobile_web_url:
-          "https://attendancechecknotice.herokuapp.com/calendar/check",
+          "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
         android_execution_params: "contentId=100",
 
         ios_execution_params: "contentId=100",
@@ -41,9 +42,9 @@ function getTemplate(massage) {
       {
         title: "승인하기",
         link: {
-          web_url: `https://attendancechecknotice.herokuapp.com/check?token=psbjuITVOHsh`,
+          web_url: `https://attendancechecknotice.herokuapp.com/calendar/check?token=psbjuITVOHsh`,
           mobile_web_url:
-            "https://attendancechecknotice.herokuapp.com/check?token=psbjuITVOHsh",
+            "https://attendancechecknotice.herokuapp.com/calendar/check?token=psbjuITVOHsh",
         },
       },
     ],
