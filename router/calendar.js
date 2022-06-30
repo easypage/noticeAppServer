@@ -15,15 +15,17 @@ router.post("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ message: "failed: request does not exist" });
   }
+  console.log("바디 확인");
   console.log(req.body);
+
   const response = await calendermongo.createCal(req.body);
 
   if (!response.check) {
     return res.status(400).send({ message: "create user fail" });
   }
-
+  console.log("리스폰스 확인");
   console.log(response.user);
-  await kakaoApi.sendMessage();
+  await kakaoApi.sendMessage(response.user);
   return res.status(200).send({ message: "successfully" });
 });
 
