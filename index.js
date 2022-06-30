@@ -23,13 +23,7 @@ app.use("/calender", calenderRouter);
 
 // 유저 입력
 app.get("/", async function (req, res) {
-  if (req === {}) {
-    res.status(401).send({ message: "failed: request does not exist" });
-  } else {
-    res.status(200).send({
-      message: "successfully",
-    });
-  }
+  res.send("홈페이지입니다.");
   res.end();
 });
 // 승인하기

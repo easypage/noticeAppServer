@@ -10,17 +10,14 @@ router.use(function (req, res, next) {
 });
 
 router.get("/", async function (req, res) {
-  // calendermongo.createCal(
-  //   "kim",
-  //   "지각",
-  //   "늦잠",
-  //   false,
-  //   "늦었습니다",
-  //   "2022-06-12"
-  // );
-
-  console.log(req.body);
-  res.send("캘린더 페이지입니다.");
+  if (Object.keys(req.body).length === 0) {
+    return res.status(401).send({ message: "failed: request does not exist" });
+  } else {
+    console.log("있습니다.");
+    return res.status(200).send({
+      message: "successfully",
+    });
+  }
 });
 router.post("/create", async function (req, res) {});
 
