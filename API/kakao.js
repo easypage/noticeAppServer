@@ -31,8 +31,16 @@ function getTemplate(name, state, reason, url, date, token) {
     },
     item_content: {
       profile_text: name,
-      title_image_text: state,
-      title_image_category: date,
+      items: [
+        {
+          item: "종류",
+          item_op: state,
+        },
+        {
+          item: "날짜",
+          item_op: date,
+        },
+      ],
     },
     social: {
       like_count: 999,
