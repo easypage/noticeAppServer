@@ -15,15 +15,15 @@ router.post("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ message: "failed: request does not exist" });
   }
-
+  console.log(req.body);
   await calendermongo
     .createCal(req.body)
     .catch((err) => {
-      return res
-        .status(400)
-        .send({ message: "failed: create user" + `${err}` });
+      console.log("cal오류 발생");
+      return res.status(400).send({ message: `failed: create user 메세지` });
     })
     .then((result) => {
+      console.log("cal성공");
       console.log(result);
     });
 
