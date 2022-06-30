@@ -30,11 +30,11 @@ mongoose
 // });
 
 async function check(token) {
-  User.updateOne({ noticeToken: token }, { check: true }).then();
+  CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
 
-  const datas = await User.find({ noticeToken: "lt9HRkV0KHQr" });
+  const datas = await CalenderModel.find({ noticeToken: "lt9HRkV0KHQr" });
   datas.map((el) => {
-    console.log(token);
+    console.log(el);
   });
 }
 async function createCal(name, state, reason, private, title, date) {
