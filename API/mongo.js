@@ -19,7 +19,19 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+// // 승인하기
+// app.get("/check", async function (req, res) {
+//     User.updateOne({ noticeToken: "lt9HRkV0KHQr" }, { check: true }).then();
 
+//     const datas = await User.find({ noticeToken: "lt9HRkV0KHQr" });
+//     datas.map((el) => {});
+
+//     res.write("<script>alert('success')</script>");
+//     res.write(
+//       "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
+//     );
+//     res.end();
+//   });
 async function createCal(name, state, reason, private, title, date) {
   const user = new CalenderModel({
     name: name,
