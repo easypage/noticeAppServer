@@ -61,9 +61,7 @@ router.get("/check", async function (req, res) {
 });
 
 router.get("/test", async function (req, res) {
-  const host = "https://attendancechecknotice.herokuapp.com/";
   kakaoApi.sendMessageTest();
-  console.log(host + "sejril.png");
 });
 
 module.exports = router;

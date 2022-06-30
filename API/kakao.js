@@ -120,7 +120,6 @@ async function sendMessage(UserData) {
   }
 
   imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
-  console.log(imgUrl);
 
   const template = getTemplate(
     UserData.name,
@@ -147,7 +146,7 @@ async function sendMessage(UserData) {
 }
 
 async function sendMessageTest() {
-  let imglist = imgLateList.absent;
+  let imglist = imgLateList.late;
 
   // switch (UserData.state) {
   //   case "결석":
@@ -162,7 +161,6 @@ async function sendMessageTest() {
   // }
 
   imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
-  console.log(imgUrl);
   const template = getTemplateTest(imgUrl);
 
   try {
