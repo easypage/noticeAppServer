@@ -38,14 +38,14 @@ async function check(token) {
   CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
   return string;
 }
-async function createCal(name, state, reason, private, title, date) {
+async function createCal(body) {
   const user = new CalenderModel({
-    name: name,
-    state: state,
-    reason: reason,
-    private: private,
-    title: title,
-    date: date,
+    name: body.name,
+    state: body.state,
+    reason: body.reason,
+    private: body.private,
+    title: body.title,
+    date: body.date,
     noticeToken: randomstring.generate(12),
     check: false,
   });

@@ -13,16 +13,34 @@ router.post("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ message: "failed: request does not exist" });
   } else {
-    console.log("있습니다.");
-    console.log(req.body);
-    console.log(req.body.fctitle);
-    console.log(req.body.startDate);
-    return res.status(200).send({
-      message: "successfully",
-    });
+    await calendermongo
+      .createCal(req.body)
+      .catch((err) => {
+        return res.status(400).send({ message: "failed" });
+      })
+      .then((result) => {
+        return res.status(200).send({
+          message: "successfully",
+        });
+      });
   }
 });
-router.post("/create", async function (req, res) {});
+router.post("/create", async function (req, res) {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(400).send({ message: "failed: request does not exist" });
+  } else {
+    await calendermongo
+      .createCal(req.body)
+      .catch((err) => {
+        return res.status(400).send({ message: "failed" });
+      })
+      .then((res) => {
+        return res.status(200).send({
+          message: "successfully",
+        });
+      });
+  }
+});
 
 router.get("/check", async function (req, res) {
   const response = await calendermongo.check(req.query.token);
