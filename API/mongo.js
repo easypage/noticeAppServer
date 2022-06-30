@@ -53,10 +53,15 @@ async function createCal(body) {
     check: false,
   });
 
-  await user.save().then((result) => {
-    res.user = result;
-    res.check = true;
-  });
+  await user
+    .save()
+    .then((result) => {
+      res.user = result;
+      res.check = true;
+    })
+    .catch((err) => {
+      console.log("실패했습니다.");
+    });
 
   return res;
 }
