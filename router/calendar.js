@@ -22,8 +22,8 @@ router.post("/", async function (req, res) {
 router.post("/create", async function (req, res) {});
 
 router.get("/check", async function (req, res) {
-  const res = await calendermongo.check(req.query.token);
-  res.write(`<script  charset="utf-8">alert(${res})</script>`);
+  const response = await calendermongo.check(req.query.token);
+  res.write(`<script  charset="utf-8">alert(${response})</script>`);
   res.write(
     "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
   );
