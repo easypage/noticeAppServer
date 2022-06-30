@@ -14,7 +14,7 @@ router.post("/", async function (req, res) {
     return res.status(400).send({ message: "failed: request does not exist" });
   } else {
     console.log("있습니다.");
-    console.log(req.body);
+    console.log(req.body.state);
     return res.status(200).send({
       message: "successfully",
     });
