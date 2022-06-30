@@ -12,7 +12,7 @@ const imgLateList = {
   leaveEarly: ["https://attendancechecknotice.herokuapp.com/leaveEarly1.png"],
 };
 
-function getTemplate(name, state, url, date, token) {
+function getTemplate(name, state, reason, url, date, token) {
   const temp = {
     object_type: "feed",
     content: {
@@ -79,6 +79,7 @@ async function sendMessage(UserData) {
   const template = getTemplate(
     UserData.name,
     UserData.state,
+    UserData.reason,
     imgUrl,
     UserData.date,
     UserData.token
