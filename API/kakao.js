@@ -7,8 +7,9 @@ const imgLateList = {
     "https://attendancechecknotice.herokuapp.com/late1.png",
     "https://attendancechecknotice.herokuapp.com/late2.png",
   ],
-  absent1: ["https://attendancechecknotice.herokuapp.com/absent1.png"],
-  checkout: ["https://attendancechecknotice.herokuapp.com/checkout1.png"],
+  absent: ["https://attendancechecknotice.herokuapp.com/absent1.png"],
+
+  leaveEarly: ["https://attendancechecknotice.herokuapp.com/leaveEarly1.png"],
 };
 
 function getTemplate(massage) {
@@ -81,5 +82,4 @@ async function sendMessage(UserData) {
 }
 module.exports = {
   sendMessage: sendMessage,
-  imgCheck: imgCheck,
 };

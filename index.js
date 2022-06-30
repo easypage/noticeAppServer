@@ -22,8 +22,8 @@ app.use("/kakao", kakaoRouter.router);
 app.use("/calender", calenderRouter);
 
 // 유저 입력
-app.get("/", async function (req, res) {
-  res.send("홈페이지입니다.");
+app.get("/", function (req, res) {
+  res.send("hello");
   res.end();
 });
 
