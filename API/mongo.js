@@ -41,6 +41,7 @@ async function check(token) {
 async function createCal(body) {
   console.log(body);
 
+  let check = false;
   const user = new CalenderModel({
     name: body.name,
     state: body.state,
@@ -55,11 +56,12 @@ async function createCal(body) {
   await user
     .save()
     .then((result) => {
-      console.log(result);
+      check = true;
     })
     .catch((err) => {
       console.error(err);
     });
+  return check;
 }
 
 module.exports = { createCal: createCal, check: check };

@@ -18,7 +18,7 @@ const kakaoRouter = require("./router/kakao");
 const calenderRouter = require("./router/calendar");
 
 // router
-app.use("/kakao", kakaoRouter);
+app.use("/kakao", kakaoRouter.router);
 app.use("/calender", calenderRouter);
 
 // 유저 입력
