@@ -22,20 +22,18 @@ mongoose
 
 // // 승인하기
 // app.get("/check", async function (req, res) {
-//   res.write("<script>alert('success')</script>");
-//   res.write(
-//     "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
-//   );
-//   res.end();
+
 // });
 
 async function check(token) {
-  CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
-
-  const datas = await CalenderModel.find({ noticeToken: "lt9HRkV0KHQr" });
+  const datas = await CalenderModel.find({ noticeToken: token });
   datas.map((el) => {
-    console.log(el);
+    if (el.check === true) {
+      return "이미 처리된 요청입니다.";
+    }
   });
+  CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
+  return "성공하였습니다.";
 }
 async function createCal(name, state, reason, private, title, date) {
   const user = new CalenderModel({

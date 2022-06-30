@@ -42,9 +42,9 @@ function getTemplate(massage) {
       {
         title: "승인하기",
         link: {
-          web_url: `https://attendancechecknotice.herokuapp.com/calendar/check?token=psbjuITVOHsh`,
+          web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh`,
           mobile_web_url:
-            "https://attendancechecknotice.herokuapp.com/calendar/check?token=psbjuITVOHsh",
+            "https://attendancechecknotice.herokuapp.com/calender/check?token=psbjuITVOHsh",
         },
       },
     ],
