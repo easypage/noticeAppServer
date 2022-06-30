@@ -11,7 +11,7 @@ router.use(function (req, res, next) {
 
 router.get("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
-    return res.status(401).send({ message: "failed: request does not exist" });
+    return res.status(400).send({ message: "failed: request does not exist" });
   } else {
     console.log("있습니다.");
     return res.status(200).send({
