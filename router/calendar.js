@@ -67,7 +67,10 @@ router.get("/check", async function (req, res) {
 router.get("/read", async function (req, res) {
   try {
     const data = await calendermongo.readCal();
-    res.send(data);
+    res.send({
+      status: 200,
+      data: data,
+    });
   } catch (err) {
     console.log("에러발생");
     res.status(500).send();
