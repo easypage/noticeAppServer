@@ -5,8 +5,7 @@ const calenderSchema = new mongoose.Schema({
   state: String,
   reason: String,
   privateReason: Boolean,
-  title: String,
-  date: String,
+  date: Date,
   noticeToken: String,
   check: Boolean,
 });

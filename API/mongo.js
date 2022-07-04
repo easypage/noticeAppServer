@@ -71,6 +71,7 @@ async function readCal() {
       if (calender.privateReason === true) {
         calender.reason = "비공개";
       }
+      console.log(calender.date);
       return calender;
     });
     return privateData;
