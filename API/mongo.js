@@ -39,8 +39,6 @@ async function check(token) {
   return string;
 }
 async function createCal(body) {
-  console.log(body);
-
   let res = { check: false, user: {} };
   const user = new CalenderModel({
     name: body.name,
@@ -66,4 +64,18 @@ async function createCal(body) {
   return res;
 }
 
-module.exports = { createCal: createCal, check: check };
+async function readCal() {
+  try {
+    const CalenderData = await CalenderModel.find({});
+    const privateData = CalenderData.map((calender) => {
+      if (calender.privateReason === true) {
+        calender.reason = "비공개";
+      }
+      return calender;
+    });
+    return privateData;
+  } catch (err) {
+    console.log("데이터 로드 에러 발생");
+  }
+}
+module.exports = { createCal: createCal, check: check, readCal: readCal };

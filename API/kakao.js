@@ -1,6 +1,8 @@
 const axios = require("axios");
 
-const ACCESS_TOKEN = process.env.KAKAO;
+const ACCESS_TOKEN =
+  process.env.KAKAO ||
+  "wls3XRGe9caOz9tl_XgzWltpueQB2AKizIpr21BuCilvuAAAAYHG-1CP";
 
 const host = "https://attendancechecknotice.herokuapp.com/";
 const imgLateList = {

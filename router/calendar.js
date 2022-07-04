@@ -3,6 +3,7 @@ const router = express.Router();
 
 const calendermongo = require("../API/mongo");
 const kakaoApi = require("../API/kakao");
+const { response } = require("express");
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
@@ -25,8 +26,11 @@ router.post("/", async function (req, res) {
   }
   console.log("리스폰스 확인");
   console.log(response.user);
-
-  await kakaoApi.sendMessage(response.user);
+  try {
+    await kakaoApi.sendMessage(response.user);
+  } catch (error) {
+    console.log(e);
+  }
   return res.status(200).send({ message: "successfully" });
 });
 
@@ -60,8 +64,16 @@ router.get("/check", async function (req, res) {
   res.end();
 });
 
-router.get("/test", async function (req, res) {
-  kakaoApi.sendMessageTest();
+router.get("/read", async function (req, res) {
+  try {
+    const data = await calendermongo.readCal();
+    res.send(data);
+  } catch (err) {
+    console.log("에러발생");
+    res.status(500).send();
+  }
 });
+
+router.get("/test", async function (req, res) {});
 
 module.exports = router;
