@@ -79,4 +79,18 @@ async function readCal() {
     console.log("데이터 로드 에러 발생");
   }
 }
-module.exports = { createCal: createCal, check: check, readCal: readCal };
+
+async function deleteCal(token) {
+  const del = await CalenderModel.deleteOne({ noticeToken: token }).then(
+    (result) => {
+      return "성공";
+    }
+  );
+  return del;
+}
+module.exports = {
+  createCal: createCal,
+  check: check,
+  readCal: readCal,
+  deleteCal: deleteCal,
+};

@@ -54,8 +54,8 @@ router.post("/create", async function (req, res) {
 router.get("/check", async function (req, res) {
   const response = await calendermongo.check(req.query.token);
   console.log("check 쿼리 확인");
-  console.log(req.url);
   console.log(req.query.token);
+
   res.writeHead(200, { "Content-Type": "text/html;charset=UTF-8" });
   res.write(`<script>alert("${response}")</script>`);
   res.write(
@@ -75,6 +75,11 @@ router.get("/read", async function (req, res) {
     console.log("에러발생");
     res.status(500).send();
   }
+});
+
+router.post("/delete", async function (req, res) {
+  const del = await calendermongo.deleteCal(res.body.token);
+  res.send({ status: 200, data: del });
 });
 
 router.get("/test", async function (req, res) {});
