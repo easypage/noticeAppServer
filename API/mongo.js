@@ -81,11 +81,13 @@ async function readCal() {
 }
 
 async function deleteCal(token) {
-  const del = await CalenderModel.deleteOne({ noticeToken: token }).then(
-    (result) => {
+  const del = await CalenderModel.deleteOne({ noticeToken: token })
+    .then((result) => {
       return "성공";
-    }
-  );
+    })
+    .catch((err) => {
+      return "실패";
+    });
   return del;
 }
 module.exports = {
