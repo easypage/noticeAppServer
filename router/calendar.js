@@ -71,6 +71,7 @@ router.get("/check", async function (req, res) {
 
   console.log("calData확인");
   console.log(calData);
+
   if (!calData.check && calData !== undefined) {
     try {
       await kakaoApi.sendCheckMessageTest(calData);
@@ -132,6 +133,14 @@ router.post("/update", async function (req, res) {
   }
 });
 
-router.get("/test", async function (req, res) {});
+router.get("/test", async function (req, res) {
+  try {
+    await kakaoApi.sendCheckMessageTest();
+  } catch (error) {
+    return res
+      .status(400)
+      .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
+  }
+});
 
 module.exports = router;

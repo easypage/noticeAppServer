@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const ACCESS_TOKEN =
   process.env.KAKAO ||
-  "wls3XRGe9caOz9tl_XgzWltpueQB2AKizIpr21BuCilvuAAAAYHG-1CP";
+  "9GyBLQc5cSMnWG_d8FjJz4hXdYFk_4sM-CWxBGVgCj1zFwAAAYHXjglA";
 
 const host = "https://attendancechecknotice.herokuapp.com/";
 const imgLateList = {
@@ -107,10 +107,11 @@ async function sendMessage(UserData) {
 
 function getCheckTemplate(state, reason) {
   const temp = {
-    object_type: "feed",
-    content: {
-      title: state + "승인 되었습니다.",
-      description: reason,
+    object_type: "text",
+    text: state + " : " + reason + " 승인되었습니다.",
+    link: {
+      web_url: "https://developers.kakao.com",
+      mobile_web_url: "https://developers.kakao.com",
     },
   };
 
