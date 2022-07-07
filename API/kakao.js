@@ -148,6 +148,7 @@ async function sendMessage(UserData) {
   } catch (error) {
     console.log(error);
     console.log("에러발생");
+    throw new Error(error, "에러발생");
   }
 }
 
