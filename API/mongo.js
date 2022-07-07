@@ -39,15 +39,6 @@ async function check(token) {
   return string;
 }
 async function createCal(body) {
-  if (
-    body.name === undefined ||
-    body.state === undefined ||
-    body.reason === undefined ||
-    body.privateReason === undefined ||
-    body.date === undefined
-  ) {
-    return "값이 오지 않았습니다.";
-  }
   let res = { check: false, user: {} };
   const user = new CalenderModel({
     name: body.name,
@@ -109,9 +100,7 @@ async function deleteCal(token) {
 
 async function updateCal(body) {
   console.log(body.token);
-  if (body.token === undefined || body.date === undefined) {
-    return "값이 오지 않았습니다.";
-  }
+
   try {
     const del = await CalenderModel.updateOne(
       { noticeToken: body.token },

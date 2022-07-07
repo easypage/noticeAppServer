@@ -16,6 +16,17 @@ router.post("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ message: "failed: request does not exist" });
   }
+
+  if (
+    req.body.name === undefined ||
+    req.body.state === undefined ||
+    req.body.reason === undefined ||
+    req.body.privateReason === undefined ||
+    req.body.date === undefined
+  ) {
+    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+  }
+
   console.log("바디 확인");
   console.log(req.body);
 
@@ -24,8 +35,7 @@ router.post("/", async function (req, res) {
   if (!response.check) {
     return res.status(400).send({ message: "create user fail" });
   }
-  console.log("리스폰스 확인");
-  console.log(response.user);
+
   try {
     await kakaoApi.sendMessage(response.user);
   } catch (error) {
@@ -72,7 +82,6 @@ router.get("/read", async function (req, res) {
       data: data,
     });
   } catch (err) {
-    console.log("에러발생");
     res.status(500).send();
   }
 });
@@ -80,6 +89,9 @@ router.get("/read", async function (req, res) {
 router.post("/delete", async function (req, res) {
   console.log("/delete body 체크");
   console.log(req.body);
+  if (req.body.token === undefined) {
+    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+  }
   try {
     const del = await calendermongo.deleteCal(req.body.token);
     return res.send({ status: 200, data: del });
@@ -89,6 +101,12 @@ router.post("/delete", async function (req, res) {
 });
 
 router.post("/update", async function (req, res) {
+  console.log("/update body 체크");
+  console.log(req.body);
+
+  if (req.body.token === undefined || req.body.date === undefined) {
+    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+  }
   try {
     const update = await calendermongo.updateCal(req.body);
     return res.send({ status: 200, data: update });
