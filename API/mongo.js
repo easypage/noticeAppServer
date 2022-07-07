@@ -99,8 +99,6 @@ async function deleteCal(token) {
 }
 
 async function updateCal(body) {
-  console.log(body.token);
-
   try {
     const update = await CalenderModel.updateOne(
       { noticeToken: body.token },

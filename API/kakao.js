@@ -108,7 +108,8 @@ function getTemplateTest(url) {
 
 async function sendMessage(UserData) {
   let imglist;
-
+  console.log("유저데이터");
+  console.log(UserData);
   switch (UserData.state) {
     case "결석":
       imglist = imgLateList.absent;
