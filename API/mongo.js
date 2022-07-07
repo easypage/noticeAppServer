@@ -39,13 +39,21 @@ async function check(token) {
   return string;
 }
 async function createCal(body) {
+  if (
+    body.name === undefined ||
+    body.state === undefined ||
+    body.reason === undefined ||
+    body.privateReason === undefined ||
+    body.date === undefined
+  ) {
+    return "값이 오지 않았습니다.";
+  }
   let res = { check: false, user: {} };
   const user = new CalenderModel({
     name: body.name,
     state: body.state,
     reason: body.reason,
     privateReason: body.privateReason,
-    title: body.title,
     date: body.date,
     noticeToken: randomstring.generate(12),
     check: false,
@@ -82,6 +90,9 @@ async function readCal() {
 
 async function deleteCal(token) {
   console.log(token);
+  if (token === undefined) {
+    return "토큰이 오지 않았습니다.";
+  }
   try {
     const del = await CalenderModel.deleteOne({ noticeToken: token })
       .then((result) => {
@@ -95,9 +106,34 @@ async function deleteCal(token) {
     return "실패";
   }
 }
+
+async function updateCal(body) {
+  console.log(body.token);
+  if (body.token === undefined || body.date === undefined) {
+    return "값이 오지 않았습니다.";
+  }
+  try {
+    const del = await CalenderModel.updateOne(
+      { noticeToken: body.token },
+      { date: body.date }
+    )
+      .then((result) => {
+        return "성공";
+      })
+      .catch((err) => {
+        return "실패";
+      });
+
+    return del;
+  } catch (error) {
+    return "실패";
+  }
+}
+
 module.exports = {
   createCal: createCal,
   check: check,
   readCal: readCal,
   deleteCal: deleteCal,
+  updateCal: updateCal,
 };

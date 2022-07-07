@@ -88,6 +88,16 @@ router.post("/delete", async function (req, res) {
   }
 });
 
+router.post("/update", async function (req, res) {
+  try {
+    const update = await calendermongo.updateCal(req.body);
+    return res.send({ status: 200, data: update });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({ data: update });
+  }
+});
+
 router.get("/test", async function (req, res) {});
 
 module.exports = router;
