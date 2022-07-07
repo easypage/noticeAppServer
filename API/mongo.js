@@ -106,7 +106,7 @@ async function updateCal(body) {
     ).catch((err) => {
       return "실패";
     });
-    const userData = await CalenderModel.find({ noticeToken: body.token });
+    const userData = await CalenderModel.findOne({ noticeToken: body.token });
     return userData;
   } catch (error) {
     return "실패";
