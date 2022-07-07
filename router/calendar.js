@@ -67,7 +67,8 @@ router.get("/check", async function (req, res) {
   const response = await calendermongo.check(req.query.token);
   console.log("check 쿼리 확인");
   console.log(req.query.token);
-  const calData = await calendermongo.findTokenData(res.query.token);
+
+  const calData = await calendermongo.findTokenData(req.query.token);
   console.log(calData);
 
   res.writeHead(200, { "Content-Type": "text/html;charset=UTF-8" });
