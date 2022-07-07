@@ -39,7 +39,7 @@ router.post("/", async function (req, res) {
   try {
     await kakaoApi.sendMessage(response.user);
   } catch (error) {
-    console.log(e);
+    return res.status(400).send({ message: "잘못된 형식입니다." });
   }
   return res.status(200).send({ message: "successfully" });
 });

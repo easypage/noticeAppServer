@@ -120,6 +120,9 @@ async function sendMessage(UserData) {
     case "조퇴":
       imglist = imgLateList.leaveEarly;
       break;
+    default:
+      return "실패";
+      break;
   }
 
   imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
