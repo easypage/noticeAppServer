@@ -109,10 +109,12 @@ router.post("/update", async function (req, res) {
   }
   try {
     const update = await calendermongo.updateCal(req.body);
-    return res.send({ status: 200, data: update });
+    await kakaoApi.sendMessage(update);
+
+    return res.send({ status: 200, data: "성공" });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ data: update });
+    return res.status(500).send({ data: "실패하였습니다." });
   }
 });
 

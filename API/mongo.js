@@ -102,18 +102,15 @@ async function updateCal(body) {
   console.log(body.token);
 
   try {
-    const del = await CalenderModel.updateOne(
+    const update = await CalenderModel.updateOne(
       { noticeToken: body.token },
-      { date: body.date }
-    )
-      .then((result) => {
-        return "성공";
-      })
-      .catch((err) => {
-        return "실패";
-      });
+      { date: body.date, check: false }
+    ).catch((err) => {
+      return "실패";
+    });
 
-    return del;
+    const userData = await CalenderModel.find({ noticeToken: body.token });
+    return userData;
   } catch (error) {
     return "실패";
   }
