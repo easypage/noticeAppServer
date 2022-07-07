@@ -78,8 +78,14 @@ router.get("/read", async function (req, res) {
 });
 
 router.post("/delete", async function (req, res) {
-  const del = await calendermongo.deleteCal(res.body.token);
-  res.send({ status: 200, data: del });
+  console.log("/delete body 체크");
+  console.log(req.body);
+  try {
+    const del = await calendermongo.deleteCal(req.body.token);
+    return res.send({ status: 200, data: del });
+  } catch (error) {
+    return res.status(500).send("오류");
+  }
 });
 
 router.get("/test", async function (req, res) {});

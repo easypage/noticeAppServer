@@ -81,6 +81,7 @@ async function readCal() {
 }
 
 async function deleteCal(token) {
+  console.log(token);
   try {
     const del = await CalenderModel.deleteOne({ noticeToken: token })
       .then((result) => {
