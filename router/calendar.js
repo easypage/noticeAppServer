@@ -69,7 +69,8 @@ router.get("/check", async function (req, res) {
   console.log(req.query.token);
 
   const calData = await calendermongo.findTokenData(req.query.token);
-
+  console.log("calData확인");
+  console.log(calData);
   if (!calData.check && calData !== undefined) {
     try {
       await kakaoApi.sendCheckMessageTest(calData);
