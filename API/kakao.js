@@ -59,53 +59,6 @@ function getTemplate(name, state, reason, url, date, token) {
   return "template_object=" + JSON.stringify(temp);
 }
 
-function getTemplateTest(url) {
-  const temp = {
-    object_type: "feed",
-    content: {
-      title: "이유",
-      description: "이유",
-      image_url: url,
-      image_width: 640,
-      image_height: 640,
-      link: {
-        web_url: "https://attendancechecknotice.herokuapp.com/",
-        mobile_web_url: "https://attendancechecknotice.herokuapp.com/",
-        android_execution_params: "contentId=100",
-
-        ios_execution_params: "contentId=100",
-      },
-    },
-    item_content: {
-      profile_text: "김",
-      items: [
-        {
-          item: "종류",
-          item_op: "종류",
-        },
-        {
-          item: "날짜",
-          item_op: "date",
-        },
-      ],
-    },
-    social: {
-      like_count: 999,
-    },
-    buttons: [
-      {
-        title: "승인하기",
-        link: {
-          web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token=`,
-          mobile_web_url: `https://attendancechecknotice.herokuapp.com/calender/check?token`,
-        },
-      },
-    ],
-  };
-
-  return "template_object=" + JSON.stringify(temp);
-}
-
 async function sendMessage(UserData) {
   let imglist;
   console.log("유저데이터");
@@ -152,24 +105,20 @@ async function sendMessage(UserData) {
   }
 }
 
-async function sendMessageTest() {
-  let imglist = imgLateList.late;
+function getCheckTemplate(state, reason) {
+  const temp = {
+    object_type: "feed",
+    content: {
+      title: state + "승인 되었습니다.",
+      description: reason,
+    },
+  };
 
-  // switch (UserData.state) {
-  //   case "결석":
-  //     imglist = imgLateList.absent;
-  //     break;
-  //   case "지각":
-  //     imglist = imgLateList.late;
-  //     break;
-  //   case "조퇴":
-  //     imglist = imgLateList.leaveEarly;
-  //     break;
-  // }
+  return "template_object=" + JSON.stringify(temp);
+}
 
-  imgUrl = imglist[Math.floor(Math.random() * imglist.length)];
-  const template = getTemplateTest(imgUrl);
-
+async function sendCheckMessageTest(body) {
+  const template = getCheckTemplate(body.state, body.reason);
   try {
     await axios
       .post("https://kapi.kakao.com/v2/api/talk/memo/default/send", template, {
@@ -182,10 +131,10 @@ async function sendMessageTest() {
   } catch (error) {
     console.log(error);
     console.log("에러발생");
+    throw new Error(error, "에러발생");
   }
 }
-
 module.exports = {
   sendMessage: sendMessage,
-  sendMessageTest: sendMessageTest,
+  sendCheckMessageTest: sendCheckMessageTest,
 };

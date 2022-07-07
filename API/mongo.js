@@ -112,10 +112,14 @@ async function updateCal(body) {
   }
 }
 
+async function findTokenData(token) {
+  const userData = await CalenderModel.findOne({ noticeToken: token });
+}
 module.exports = {
   createCal: createCal,
   check: check,
   readCal: readCal,
   deleteCal: deleteCal,
   updateCal: updateCal,
+  findTokenData: findTokenData,
 };
