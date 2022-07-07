@@ -114,6 +114,7 @@ async function updateCal(body) {
 
 async function findTokenData(token) {
   const userData = await CalenderModel.findOne({ noticeToken: token });
+  return userData;
 }
 module.exports = {
   createCal: createCal,
