@@ -69,8 +69,16 @@ router.get("/check", async function (req, res) {
   console.log(req.query.token);
 
   const calData = await calendermongo.findTokenData(req.query.token);
-  console.log(calData);
 
+  if (!calData.check && calData !== undefined) {
+    try {
+      await kakaoApi.sendCheckMessageTest(calData);
+    } catch (error) {
+      return res
+        .status(400)
+        .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
+    }
+  }
   res.writeHead(200, { "Content-Type": "text/html;charset=UTF-8" });
   res.write(`<script>alert("${response}")</script>`);
   res.write(
