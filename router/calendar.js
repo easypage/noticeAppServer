@@ -64,11 +64,11 @@ router.post("/create", async function (req, res) {
 });
 
 router.get("/check", async function (req, res) {
+  const calData = await calendermongo.findTokenData(req.query.token);
   const response = await calendermongo.check(req.query.token);
   console.log("check 쿼리 확인");
   console.log(req.query.token);
 
-  const calData = await calendermongo.findTokenData(req.query.token);
   console.log("calData확인");
   console.log(calData);
   if (!calData.check && calData !== undefined) {
