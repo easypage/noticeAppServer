@@ -38,6 +38,7 @@ async function check(token) {
   CalenderModel.updateOne({ noticeToken: token }, { check: true }).then();
   return string;
 }
+
 async function createCal(body) {
   let res = { check: false, user: {} };
   const user = new CalenderModel({

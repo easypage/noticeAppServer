@@ -4,7 +4,7 @@ const ACCESS_TOKEN =
   process.env.KAKAO ||
   "9GyBLQc5cSMnWG_d8FjJz4hXdYFk_4sM-CWxBGVgCj1zFwAAAYHXjglA";
 
-const host = "https://attendancechecknotice.herokuapp.com/";
+const host = "https://attendancechecknotice.herokuapp.com/messageImg";
 const imgLateList = {
   late: [host + "late1.png", host + "late2.png", host + "late3.png"],
   absent: [host + "absent1.png", host + "absent2.png"],

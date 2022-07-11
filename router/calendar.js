@@ -33,7 +33,7 @@ router.post("/", async function (req, res) {
   const response = await calendermongo.createCal(req.body);
 
   if (!response.check) {
-    return res.status(400).send({ message: "create user fail" });
+    return res.status(500).send({ message: "create user fail" });
   }
 
   try {
