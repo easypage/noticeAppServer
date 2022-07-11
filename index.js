@@ -26,20 +26,3 @@ app.get("/", function (req, res) {
   res.send("hello");
   res.end();
 });
-
-// test용 json
-app.get("/json", async function (req, res) {
-  const Users = [];
-
-  const datas = await User.find({});
-
-  datas.map((el) => {
-    Users.push({ title: el.title, date: el.date });
-  });
-
-  res.json({ ok: true, Users });
-});
-app.get("/check", async function (req, res) {
-  res.send("hello");
-  res.end();
-});

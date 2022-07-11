@@ -1,7 +1,7 @@
 const express = require("express"); // express 임포트
 const router = express.Router();
 
-const calendermongo = require("../API/mongo");
+const calendermongo = require("../API/calendarMongo");
 const kakaoApi = require("../API/kakao");
 const { response } = require("express");
 
