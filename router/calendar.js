@@ -12,6 +12,7 @@ router.use(function (req, res, next) {
   next();
 });
 
+// post 기본생성
 router.post("/", async function (req, res) {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ message: "failed: request does not exist" });
@@ -44,49 +45,6 @@ router.post("/", async function (req, res) {
       .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
   }
   return res.status(200).send({ message: "successfully" });
-});
-
-router.post("/create", async function (req, res) {
-  if (Object.keys(req.body).length === 0) {
-    return res.status(400).send({ message: "failed: request does not exist" });
-  } else {
-    await calendermongo
-      .createCal(req.body)
-      .catch((err) => {
-        return res.status(400).send({ message: "failed" });
-      })
-      .then((res) => {
-        return res.status(200).send({
-          message: "successfully",
-        });
-      });
-  }
-});
-
-router.get("/check", async function (req, res) {
-  const calData = await calendermongo.findTokenData(req.query.token);
-  const response = await calendermongo.check(req.query.token);
-  console.log("check 쿼리 확인");
-  console.log(req.query.token);
-
-  console.log("calData확인");
-  console.log(calData);
-
-  if (!calData.check && calData !== undefined) {
-    try {
-      await kakaoApi.sendCheckMessageTest(calData);
-    } catch (error) {
-      return res
-        .status(400)
-        .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
-    }
-  }
-  res.writeHead(200, { "Content-Type": "text/html;charset=UTF-8" });
-  res.write(`<script>alert("${response}")</script>`);
-  res.write(
-    "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
-  );
-  res.end();
 });
 
 router.get("/read", async function (req, res) {
@@ -133,14 +91,30 @@ router.post("/update", async function (req, res) {
   }
 });
 
-router.get("/test", async function (req, res) {
-  try {
-    await kakaoApi.sendCheckMessageTest();
-  } catch (error) {
-    return res
-      .status(400)
-      .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
+router.get("/check", async function (req, res) {
+  const calData = await calendermongo.findTokenData(req.query.token);
+  const response = await calendermongo.check(req.query.token);
+  console.log("check 쿼리 확인");
+  console.log(req.query.token);
+
+  console.log("calData확인");
+  console.log(calData);
+
+  if (!calData.check && calData !== undefined) {
+    try {
+      await kakaoApi.sendCheckMessageTest(calData);
+    } catch (error) {
+      return res
+        .status(400)
+        .send({ message: "메세지 보내는중 문제가 발생하였습니다." });
+    }
   }
+  res.writeHead(200, { "Content-Type": "text/html;charset=UTF-8" });
+  res.write(`<script>alert("${response}")</script>`);
+  res.write(
+    "<script>location.href = 'kakaotalk://inappbrowser/close'</script>"
+  );
+  res.end();
 });
 
 module.exports = router;

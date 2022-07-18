@@ -20,11 +20,7 @@ mongoose
     console.log(err);
   });
 
-// // 승인하기
-// app.get("/check", async function (req, res) {
-
-// });
-
+// 승인하기
 async function check(token) {
   const datas = await CalenderModel.find({ noticeToken: token });
   let string = "승인하였습니다.";
