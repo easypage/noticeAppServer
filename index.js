@@ -23,6 +23,6 @@ app.use("/calender", calenderRouter);
 
 // 유저 입력
 app.get("/", function (req, res) {
-  res.send("hello");
+  res.send("일정 관리 카카오 API 프로젝트 페이지 입니다!");
   res.end();
 });

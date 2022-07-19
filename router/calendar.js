@@ -25,7 +25,7 @@ router.post("/", async function (req, res) {
     req.body.privateReason === undefined ||
     req.body.date === undefined
   ) {
-    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+    return res.status(401).send("data 값이 오지 않았거나 잘못 왔습니다.");
   }
 
   console.log("바디 확인");
@@ -63,7 +63,7 @@ router.post("/delete", async function (req, res) {
   console.log("/delete body 체크");
   console.log(req.body);
   if (req.body.token === undefined) {
-    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+    return res.status(401).send("data 값이 오지 않았거나 잘못 왔습니다.");
   }
   try {
     const del = await calendermongo.deleteCal(req.body.token);
@@ -78,7 +78,7 @@ router.post("/update", async function (req, res) {
   console.log(req.body);
 
   if (req.body.token === undefined || req.body.date === undefined) {
-    return res.status(500).send("data 값이 오지 않았거나 잘못 왔습니다.");
+    return res.status(401).send("data 값이 오지 않았거나 잘못 왔습니다.");
   }
   try {
     const update = await calendermongo.updateCal(req.body);
